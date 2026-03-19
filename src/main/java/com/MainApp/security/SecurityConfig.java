@@ -15,7 +15,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
 @Configuration
-@EnableMethodSecurity   // ← enables @PreAuthorize on your controllers
+@EnableMethodSecurity
 public class SecurityConfig {
 
     private final CustomAdminDetailsService adminDetailsService;
@@ -29,33 +29,28 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .authorizeHttpRequests(auth -> auth
-                // Public read endpoints
-                .requestMatchers(
-                    "/hero/all",
-                    "/skills/all",
-                    "/contact/view",
-                    "/projects/all",
-                    "/education/all",
-                    "/experience/all",
-                    "/about/all"
-                ).permitAll()
-
-                // Auth endpoints
-                .requestMatchers("/admin/auth/**").permitAll()
-
-                // Everything else — let @PreAuthorize on controllers decide
-                .anyRequest().authenticated()
-            )
-            .sessionManagement(session ->
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            )
-            .addFilterBefore(
-                jwtFilter,
-                org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class
-            );
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/hero/all",
+                                "/skills/all",
+                                "/contact/view",
+                                "/projects/all",
+                                "/education/all",
+                                "/experience/all",
+                                "/about/all"
+                        ).permitAll()
+                        .requestMatchers("/admin/auth/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .addFilterBefore(
+                        jwtFilter,
+                        org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class
+                );
 
         return http.build();
     }
@@ -63,7 +58,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedOrigins(List.of(
+                "http://localhost:5173",
+                "https://portfolio-frontend-linker.vercel.app"
+        ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
