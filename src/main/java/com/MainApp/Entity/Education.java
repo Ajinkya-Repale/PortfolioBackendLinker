@@ -13,6 +13,9 @@ public class Education {
 
     private String startYear;
 
+    //new feild
+    private String degree;
+
     private String endYear;
 
     private String percentage;
@@ -22,12 +25,13 @@ public class Education {
     }
 
     // Parameterized Constructor
-    public Education(String id, String collegeTitle, String startYear, String endYear, String percentage) {
+    public Education(String id, String collegeTitle, String startYear, String endYear, String percentage, String degree) {
         this.id = id;
         this.collegeTitle = collegeTitle;
         this.startYear = startYear;
         this.endYear = endYear;
         this.percentage = percentage;
+        this.degree=degree;
     }
 
     // Getters and Setters
@@ -71,6 +75,14 @@ public class Education {
         this.percentage = percentage;
     }
 
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
     @Override
     public String toString() {
         return "Education{" +
@@ -79,6 +91,7 @@ public class Education {
                 ", startYear='" + startYear + '\'' +
                 ", endYear='" + endYear + '\'' +
                 ", percentage='" + percentage + '\'' +
+                ", degree='" + degree + '\'' +
                 '}';
     }
 }

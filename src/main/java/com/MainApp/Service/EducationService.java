@@ -37,6 +37,7 @@ public class EducationService {
             edu.setStartYear(education.getStartYear());
             edu.setEndYear(education.getEndYear());
             edu.setPercentage(education.getPercentage());
+            edu.setDegree(education.getDegree());
 
             return eduRepo.save(edu);
         } else {
