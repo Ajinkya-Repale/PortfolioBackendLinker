@@ -36,6 +36,7 @@ public class SecurityConfig {
                                 "/hero/all",
                                 "/skills/all",
                                 "/contact/view",
+                                "/contact/submit",
                                 "/projects/all",
                                 "/education/all",
                                 "/experience/all",
