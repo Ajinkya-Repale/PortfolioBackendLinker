@@ -41,7 +41,8 @@ public class SecurityConfig {
                                 "/projects/all",
                                 "/education/all",
                                 "/experience/all",
-                                "/about/all"
+                                "/about/all",
+                                "/certificate/all"
                         ).permitAll()
                         .requestMatchers("/admin/auth/**").permitAll()
                         .anyRequest().authenticated()
