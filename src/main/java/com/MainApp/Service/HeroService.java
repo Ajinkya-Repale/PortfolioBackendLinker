@@ -45,6 +45,7 @@ public class HeroService {
             existingHero.setName(updatedHero.getName());
             existingHero.setRole(updatedHero.getRole());
             existingHero.setAvatarUrl(updatedHero.getAvatarUrl());
+            existingHero.setResumeUrl(updatedHero.getResumeUrl());
 
             return heroRepo.save(existingHero);
         }

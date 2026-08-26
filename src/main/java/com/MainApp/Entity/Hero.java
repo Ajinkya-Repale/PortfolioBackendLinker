@@ -8,18 +8,20 @@ public class Hero {
 
 	@Id
 	private String id;
-	
+
 	private String introText;
-	
+
 	private String HeroTitle;
-	
+
 	private String HeroDescription;
-	
+
 	private String name;
-	
+
 	private String role;
-	
+
 	private String avatarUrl;
+
+	private String resumeUrl;
 
 	public String getId() {
 		return id;
@@ -76,8 +78,16 @@ public class Hero {
 	public void setAvatarUrl(String avatarUrl) {
 		this.avatarUrl = avatarUrl;
 	}
-	
-	
-	
-	
+
+	public String getResumeUrl() {
+		return resumeUrl;
+	}
+
+	public void setResumeUrl(String resumeUrl) {
+		this.resumeUrl = resumeUrl;
+	}
+
+
+
+
 }
